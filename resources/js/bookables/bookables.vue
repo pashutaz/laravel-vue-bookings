@@ -4,13 +4,13 @@
     <div v-else>
       <div class="row mb-4" v-for="row in rows" :key="row">
         <div
-          class="col"
+          class="col d-flex align-items-strech"
           v-for="(bookable, column) in bookablesInRow(row)"
           :key="'row' + row + column"
         >
           <BookableListItem
             :title="bookable.title"
-            :content="bookable.content"
+            :content="bookable.description"
             :price="bookable.price"
           ></BookableListItem>
         </div>
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       bookables: null,
-      loading: true,
+      loading: false,
       columns: 3,
     };
   },
@@ -57,46 +57,15 @@ export default {
 
   // },
   created() {
-    setTimeout(() => {
-      this.bookables = [
-        {
-          title: "Cheap villa1",
-          content: "Very cheap villa",
-          price: 1000.0,
-        },
-        {
-          title: "Cheap villa2",
-          content: "Very cheap villa2",
-          price: 777.0,
-        },
-        {
-          title: "Cheap villa1",
-          content: "Very cheap villa",
-          price: 1000.0,
-        },
-        {
-          title: "Cheap villa2",
-          content: "Very cheap villa2",
-          price: 777.0,
-        },
-        {
-          title: "Cheap villa1",
-          content: "Very cheap villa",
-          price: 1000.0,
-        },
-        {
-          title: "Cheap villa2",
-          content: "Very cheap villa2",
-          price: 777.0,
-        },
-        {
-          title: "Cheap villa2",
-          content: "Very cheap villa2",
-          price: 777.0,
-        },
-      ];
-      this.loading = false;
-    }, 2000);
+    this.loading = true;
+
+    const request = axios
+      .get("/api/bookables")
+      .then(response => {
+        console.log(response);
+        this.bookables = response.data;
+        this.loading = false;
+      });
   },
   // beforeMount() {
 
