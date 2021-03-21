@@ -8,11 +8,9 @@
           v-for="(bookable, column) in bookablesInRow(row)"
           :key="'row' + row + column"
         >
-          <BookableListItem
-            :title="bookable.title"
-            :content="bookable.description"
-            :price="bookable.price"
-          ></BookableListItem>
+          <bookable-list-item
+            v-bind="bookable"
+          ></bookable-list-item>
         </div>
 
         <div
@@ -26,12 +24,13 @@
 </template>
 
 <script>
-import BookableListItem from "./bookableListItem";
+import BookableListItem from "./BookableListItem";
 
 export default {
   components: {
     BookableListItem,
   },
+
   data() {
     return {
       bookables: null,
@@ -39,11 +38,15 @@ export default {
       columns: 3,
     };
   },
+
   computed: {
     rows() {
-      return this.bookables ? Math.ceil(this.bookables.length / this.columns) : 0;
+      return this.bookables
+        ? Math.ceil(this.bookables.length / this.columns)
+        : 0;
     },
   },
+
   methods: {
     bookablesInRow(row) {
       return this.bookables.slice((row - 1) * this.columns, row * this.columns);
@@ -59,13 +62,11 @@ export default {
   created() {
     this.loading = true;
 
-    const request = axios
-      .get("/api/bookables")
-      .then(response => {
-        console.log(response);
-        this.bookables = response.data;
-        this.loading = false;
-      });
+    const request = axios.get("/api/bookables").then((response) => {
+      console.log(response);
+      this.bookables = response.data;
+      this.loading = false;
+    });
   },
   // beforeMount() {
 
