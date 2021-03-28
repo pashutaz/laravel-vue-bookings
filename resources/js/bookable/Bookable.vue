@@ -14,24 +14,31 @@
       </div>
     </div>
     <div class="col-md-4">
-      TO-DO
+        <availability></availability>
     </div>
   </div>
 </template>
 
 <script>
+import Availability from "./Availability";
+
 export default {
+  components: {
+    Availability,
+  },
+
   data() {
     return {
       bookable: null,
-      loading: false
+      loading: false,
     };
   },
+
   created() {
     this.loading = true;
     // console.log(this.$route.params.id);
     axios.get(`/api/bookables/${this.$route.params.id}`).then((response) => {
-      this.bookable = response.data;
+      this.bookable = response.data.data;
       this.loading = false;
     });
   },
