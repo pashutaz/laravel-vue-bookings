@@ -13,7 +13,7 @@
         <div v-else>Loading...</div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 pt-4">
         <availability></availability>
     </div>
   </div>
