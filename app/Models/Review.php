@@ -5,19 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Model
+class Review extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['from', 'to'];
 
     public function bookable()
     {
         return $this->belongsTo(Bookable::class);
     }
 
-    public function review()
+    public function booking()
     {
-        return $this->hasOne(Review::class);
+        return $this->belongsTo(Booking::class);
+    }
+
+
+    public function getIncrementing() {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
     }
 }

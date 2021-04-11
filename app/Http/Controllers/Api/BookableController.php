@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Bookable;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Models\Bookable;
 use App\Http\Resources\BookableIndexResource;
 use App\Http\Resources\BookableShowResource;
 

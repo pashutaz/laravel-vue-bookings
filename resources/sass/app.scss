@@ -1,6 +1,12 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+// Our project just needs Font Awesome solid + brand
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+
 // Variables
 @import 'variables';
 

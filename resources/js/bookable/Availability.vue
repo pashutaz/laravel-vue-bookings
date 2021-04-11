@@ -60,6 +60,10 @@
 
 <script>
 export default {
+  props: {
+    bookableId: String,
+  },
+
   data() {
     return {
       from: new Date().toLocaleDateString("en-CA"),
@@ -77,7 +81,7 @@ export default {
 
       axios
         .get(
-          `/api/bookables/${this.$route.params.id}/availability?from=${this.from}&to=${this.to}`
+          `/api/bookables/${this.bookableId}/availability?from=${this.from}&to=${this.to}`
         )
         .then((response) => {
           console.log(response);
@@ -107,8 +111,8 @@ export default {
       return 200 === this.status;
     },
     notAvailable() {
-        return 404 === this.status;
-    }
+      return 404 === this.status;
+    },
   },
 };
 </script>
