@@ -10,7 +10,7 @@
     <div v-else>
       <div class="border-bottom" v-for="(review, index) in reviews" :key="index">
         <div class="row pt-3">
-          <div class="col-md-6">Pashutaz</div>
+          <div class="col-md-6 font-italic">Pashutaz</div>
           <div class="col-md-6 d-flex justify-content-end"><star-rating :rating="parseFloat(review.rating)" class="fa-lg"></star-rating></div>
         </div>
 

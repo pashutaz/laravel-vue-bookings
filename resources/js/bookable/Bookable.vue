@@ -13,10 +13,10 @@
         <div v-else>Loading...</div>
       </div>
 
-      <review-list :bookable-id="this.$route.params.id"></review-list>
+      <review-list :bookable-id="String(this.$route.params.id)"></review-list>
     </div>
     <div class="col-md-4 pt-4">
-      <availability :bookable-id="this.$route.params.id"></availability>
+      <availability :bookable-id="String(this.$route.params.id)"></availability>
     </div>
   </div>
 </template>
