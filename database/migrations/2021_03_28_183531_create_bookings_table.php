@@ -22,7 +22,7 @@ class CreateBookingsTable extends Migration
 
             $table->foreignId('bookable_id')->index();
             $table->foreign('bookable_id')->references('id')->on('bookables');
-            $table->uuid('review_key');
+            $table->uuid('review_key')->nullable(true);
         });
     }
 

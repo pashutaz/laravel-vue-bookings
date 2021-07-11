@@ -9,6 +9,8 @@ class Bookable extends Model
 {
     use HasFactory;
 
+    protected $visible = ['id', 'title', 'description'];
+
     public function bookings()
     {
         return $this->hasMany(Booking::class);

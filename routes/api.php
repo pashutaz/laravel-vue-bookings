@@ -30,6 +30,7 @@ Route::get('bookables/{bookable}/availability', BookableAvailabilityController::
     ->name('bookables.availability.show');
 Route::get('bookables/{bookable}/reviews', BookableReviewController::class)
     ->name('bookables.reviews.index');
-Route::get('reviews/{id}', [ReviewController::class, 'show']);
+
+Route::resource('reviews', ReviewController::class)->only(['show', 'store']);
 Route::get('booking-by-review/{id}', BookingByReviewController::class)
     ->name('booking.by-review.show');
