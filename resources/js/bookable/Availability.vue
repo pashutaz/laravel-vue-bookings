@@ -16,15 +16,9 @@
           class="form-control form-control-sm"
           v-model="from"
           @keyup.enter="check"
-          :class="[{ 'is-invalid': this.errorFor('from') }]"
+          :class="[{ 'is-invalid': getErrorsFor('from') }]"
         />
-        <div
-          class="invalid-feedback"
-          v-for="(error, index) in this.errorFor('from')"
-          :key="'from' + index"
-        >
-          {{ error }}
-        </div>
+        <invalid-feedback :errors="getErrorsFor('from')"></invalid-feedback>
       </div>
 
       <div class="form-group col-md-6">
@@ -36,15 +30,9 @@
           class="form-control form-control-sm"
           v-model="to"
           @keyup.enter="check"
-          :class="[{ 'is-invalid': this.errorFor('to') }]"
+          :class="[{ 'is-invalid': getErrorsFor('to') }]"
         />
-        <div
-          class="invalid-feedback"
-          v-for="(error, index) in this.errorFor('to')"
-          :key="'from' + index"
-        >
-          {{ error }}
-        </div>
+        <invalid-feedback :errors="getErrorsFor('to')"></invalid-feedback>
       </div>
 
       <button
@@ -59,9 +47,20 @@
 </template>
 
 <script>
+import InvalidFeedback from "../shared/components/InvalidFeedback";
+import validationErrors from "../shared/mixins/validationErrors";
+
 export default {
+  name: 'Availability',
+
+  mixins: [validationErrors],
+
   props: {
     bookableId: String,
+  },
+
+  components: {
+    InvalidFeedback
   },
 
   data() {
@@ -70,7 +69,6 @@ export default {
       to: new Date().toLocaleDateString("en-CA"),
       loading: false,
       status: null,
-      errors: null,
     };
   },
 
@@ -97,16 +95,9 @@ export default {
           this.loading = false;
         });
     },
-
-    errorFor(field) {
-      return this.hasErrors && this.errors[field] ? this.errors[field] : null;
-    },
   },
 
   computed: {
-    hasErrors() {
-      return 422 === this.status && this.errors !== null;
-    },
     available() {
       return 200 === this.status;
     },
