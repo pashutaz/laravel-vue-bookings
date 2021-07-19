@@ -11,14 +11,15 @@ class BookableAvailabilityController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function __invoke($id, Request $request)
     {
         $data = $request->validate([
-            'from' => 'required|date_format:Y-m-d|after_or_equal:now',
-            'to' => 'required|date_format:Y-m-d|after_or_equal:from'
+            'from' => 'required|date_format:Y-m-d|after_or_equal:today',
+            'to'   => 'required|date_format:Y-m-d|after_or_equal:from'
         ]);
 
         /** @var Bookable */
