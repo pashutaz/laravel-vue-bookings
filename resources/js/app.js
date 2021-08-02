@@ -2,12 +2,14 @@ require('./bootstrap');
 
 import VueRouter from 'vue-router';
 import router from './routes';
+import Vuex from 'vuex';
 import Index from './index';
 
 import moment from 'moment';
 import StarRating from './shared/components/StarRating.vue';
 import FatalError from "./shared/components/FatalError";
 import SuccessResponse from "./shared/components/SuccessResponse";
+import Store from "./shared/store";
 
 window.Vue = require('vue');
 
@@ -29,6 +31,7 @@ window.Vue = require('vue');
 
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
 Vue.filter("fromNow", value => moment(value).fromNow());
 
@@ -36,10 +39,18 @@ Vue.component("star-rating", StarRating);
 Vue.component("fatal-error", FatalError);
 Vue.component("success-response", SuccessResponse);
 
+const store = new Vuex.Store(Store);
+
 const app = new Vue({
     el: '#app',
     router,
+    store,
     components: {
         "index": Index
+    },
+    beforeCreate() {
+        this.$store.dispatch('loadLastDateCheck');
     }
 });
+
+

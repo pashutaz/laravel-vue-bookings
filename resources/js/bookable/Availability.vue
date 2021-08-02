@@ -65,8 +65,8 @@ export default {
 
   data() {
     return {
-      from: new Date().toLocaleDateString("en-CA"),
-      to: new Date().toLocaleDateString("en-CA"),
+      from: this.$store.state.lastDateCheck.from,
+      to: this.$store.state.lastDateCheck.to,
       loading: false,
       status: null,
     };
@@ -76,6 +76,11 @@ export default {
     check() {
       this.loading = true;
       this.errors = null;
+
+      this.$store.dispatch('setLastDateCheck', {
+        from: this.from,
+        to: this.to
+      });
 
       axios
         .get(
