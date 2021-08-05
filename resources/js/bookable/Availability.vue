@@ -42,7 +42,8 @@
         @click="check"
         :disabled="loading"
       >
-        Check!
+        <template v-if="loading"><i class="fas fa-spinner fa-pulse"></i>Checking...</template>
+        <template v-else>Check!</template>
       </button>
     </div>
   </div>

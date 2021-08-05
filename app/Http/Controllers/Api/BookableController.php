@@ -12,9 +12,7 @@ class BookableController extends Controller
 {
     public function index()
     {
-        return BookableIndexResource::collection(
-            Bookable::all()
-        );
+        return BookableIndexResource::collection(Bookable::all());
     }
 
     public function show($bookableId)
