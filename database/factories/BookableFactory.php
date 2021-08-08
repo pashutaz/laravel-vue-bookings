@@ -9,12 +9,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class BookableFactory extends Factory
 {
     private $suffix = [
-        'villa',
+        'Villa',
         'House',
         'Cottage',
-        'Rooms',
-        'Cheap Rooms'
+        'Room',
+        'Cheap Room',
+        'Apartment',
+        'Condo',
+        'Cabin'
     ];
+
     /**
      * The name of the factory's corresponding model.
      *
@@ -27,11 +31,12 @@ class BookableFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'title' => $this->faker->city . ' ' . Arr::random($this->suffix),
-            'description' => $this->faker->text()
+            'description' => $this->faker->text(),
+            'price' => rand(99, 999) + rand(50, 99) / 100
         ];
     }
 }
