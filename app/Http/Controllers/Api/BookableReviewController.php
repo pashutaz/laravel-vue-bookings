@@ -12,8 +12,8 @@ class BookableReviewController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @param Request $request
      */
     public function __invoke($id, Request $request)
     {

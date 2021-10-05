@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class BookingByReviewController extends Controller
 {
@@ -14,11 +13,16 @@ class BookingByReviewController extends Controller
      *
      * @param $id
      * @param Request $request
-     * @return array|void
+     * @return array
      */
-    public function __invoke($id, Request $request)
+    public function __invoke($id, Request $request): array
     {
         $booking = Booking::findByReviewKey($id);
-        return $booking ? $booking->toArray() : abort(404);
+
+        if (!$booking) {
+            abort(404);
+        }
+
+        return $booking->toArray();
     }
 }

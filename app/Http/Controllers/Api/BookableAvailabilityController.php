@@ -27,6 +27,6 @@ class BookableAvailabilityController extends Controller
 
         return $bookable->availableFor($data['from'], $data['to'])
             ? response()->json(['msg' => 'Available'])
-            : response()->json(['mgs' => 'Not available'], 404);
+            : response()->json(['msg' => 'Not available'], 404);
     }
 }
