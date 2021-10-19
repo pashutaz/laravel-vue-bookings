@@ -12,7 +12,7 @@ class Bookable extends Model
 {
     use HasFactory;
 
-    protected $visible = ['id', 'title', 'description'];
+    protected $visible = ['id', 'title', 'description', 'price'];
 
     public function bookings()
     {

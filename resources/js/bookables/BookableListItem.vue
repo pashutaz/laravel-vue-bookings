@@ -5,7 +5,7 @@
         <h5 class="card-title">{{ title }}</h5>
       </router-link>
       <p class="card-text">{{ description }}</p>
-      <p v-if="id">{{ id }}$</p>
+      <p v-if="price">From ${{ price }}/d</p>
     </div>
   </div>
 </template>
@@ -16,6 +16,7 @@ export default {
     title: String,
     description: String,
     id: Number,
+    price: Number
   },
 };
 </script>
