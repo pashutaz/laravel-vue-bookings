@@ -1,4 +1,9 @@
+import cart from "./modules/cart";
+
 export default {
+    modules: {
+        cart
+    },
     state: {
         lastDateCheck: {
             from: null,

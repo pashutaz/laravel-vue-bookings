@@ -38,7 +38,7 @@
       </div>
 
       <button
-        class="btn btn-secondary btn-block"
+        class="btn btn-outline-primary btn-block"
         @click="check"
         :disabled="loading"
       >

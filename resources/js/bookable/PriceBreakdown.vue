@@ -6,7 +6,7 @@
 
   <div v-for="(days, price) in fullPrice.breakdown" class="d-flex justify-content-between">
     <span>{{ price }}$ X {{ days }} days</span>
-    <span>{{ price*days }}$</span>
+    <span>{{ (price*days).toFixed(2) }}$</span>
   </div>
   <hr>
   <div class="pb-3 d-flex justify-content-between">
