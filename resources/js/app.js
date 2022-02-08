@@ -49,7 +49,7 @@ const app = new Vue({
         "index": Index
     },
     beforeCreate() {
-        this.$store.dispatch('loadLastDateCheck');
+        this.$store.dispatch('loadStateFromStorage');
     }
 });
 

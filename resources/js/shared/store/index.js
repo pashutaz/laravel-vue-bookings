@@ -24,11 +24,15 @@ export default {
             context.commit('setLastDateCheck', payload);
             localStorage.setItem('lastDateCheck', JSON.stringify(payload));
         },
-        loadLastDateCheck(context) {
+        loadStateFromStorage(context) {
             const lastDateCheck = localStorage.getItem('lastDateCheck');
-
             if (lastDateCheck) {
                 context.commit('setLastDateCheck', JSON.parse(lastDateCheck));
+            }
+
+            const cart = localStorage.getItem('shoppingCart');
+            if (cart) {
+                context.commit('setCart', JSON.parse(cart));
             }
         }
     }

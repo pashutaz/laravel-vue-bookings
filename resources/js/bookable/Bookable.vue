@@ -93,7 +93,7 @@ export default {
     },
 
     addItemToCart() {
-      this.$store.commit('addItemToCart', {
+      this.$store.dispatch('addItemToCart', {
         bookable: this.bookable,
         price: this.price,
         dates: this.$store.state.lastDateCheck
@@ -101,7 +101,7 @@ export default {
     },
 
     removeItemFromCart() {
-      this.$store.commit('removeItemFromCart', this.bookable.id)
+      this.$store.dispatch('removeItemFromCart', this.bookable.id)
     }
   },
 
