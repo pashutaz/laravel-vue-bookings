@@ -108,7 +108,7 @@ export default {
   computed: {
     cartHasThisBooking() {
       return (this.bookable !== null)
-        ? !!this.$store.getters.getCartItemById(this.bookable.id)
+        ? !!this.$store.getters.findCartItem(this.bookable.id)
         : false;
     }
   }

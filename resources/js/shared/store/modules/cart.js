@@ -18,7 +18,7 @@ export default {
     getters: {
         cartCount: state => state.cart.items.length,
         cartItems: state => state.cart.items,
-        getCartItemById: state => id => state.cart.items.find(item => item.bookable.id === id)
+        findCartItem: state => id => state.cart.items.find(item => item.bookable.id === id)
     },
     actions: {
         setCart({ commit }, payload) {
