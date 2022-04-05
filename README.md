@@ -7,6 +7,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Screenshots
+<img width="1280" alt="Screenshot 2022-04-05 at 23 43 34" src="https://user-images.githubusercontent.com/11718757/161847248-ce3d7947-fbb0-425a-b7cd-4c873b7b0408.png">
+<img width="1280" alt="Screenshot 2022-04-05 at 23 43 47" src="https://user-images.githubusercontent.com/11718757/161847368-050e9938-2b46-47aa-9ee7-9e2e66b8a825.png">
+<img width="1280" alt="Screenshot 2022-04-05 at 23 45 11" src="https://user-images.githubusercontent.com/11718757/161847411-48fd39cc-d881-4fd0-a07c-e88bc88ce0b3.png">
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -55,6 +60,7 @@ In order to ensure that the Laravel community is welcoming to all, please review
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
 
 ## License
 
