@@ -1,9 +1,12 @@
 <template>
   <div class="card w-100">
-    <div class="card-body">
+    <div class="card-header">
       <router-link :to="{ name: 'bookable.show', params: {id} }">
         <h5 class="card-title">{{ title }}</h5>
       </router-link>
+    </div>
+    <img :src="`https://picsum.photos/seed/${ title }/300/200`" alt="">
+    <div class="card-body">
       <p class="card-text">{{ description }}</p>
       <p v-if="price">From ${{ price }}/d</p>
     </div>

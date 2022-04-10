@@ -9,14 +9,14 @@
           <div class="card-body">
             <p class="card-text">{{ bookable.description }}</p>
           </div>
+          <img :src="`https://picsum.photos/seed/${ bookable.title }/700/300`" alt="image" class="w-100">
         </div>
         <div v-else>Loading...</div>
       </div>
       <hr>
-      <img :src="`https://picsum.photos/700/300?random=${ Math.floor(Math.random()*100) }`" alt="image" class="w-100">
-      <hr>
       <review-list :bookable-id="String(this.$route.params.id)"></review-list>
     </div>
+
     <div class="col-md-4 pt-4">
       <availability
         :bookable-id="String(this.$route.params.id)"
@@ -76,7 +76,7 @@ export default {
 
   methods: {
     async checkPrice(event) {
-      if (! event) {
+      if (!event) {
         this.price = null;
         return;
       }
