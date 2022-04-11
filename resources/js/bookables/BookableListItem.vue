@@ -1,10 +1,10 @@
 <template>
   <div class="card w-100">
-    <div class="card-header">
-      <router-link :to="{ name: 'bookable.show', params: {id} }">
+    <router-link :to="{ name: 'bookable.show', params: {id} }">
+      <div class="card-header">
         <h5 class="card-title">{{ title }}</h5>
-      </router-link>
-    </div>
+      </div>
+    </router-link>
     <img :src="`https://picsum.photos/seed/${ title }/300/200`" alt="">
     <div class="card-body">
       <p class="card-text">{{ description }}</p>

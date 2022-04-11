@@ -1,16 +1,15 @@
 <template>
   <div>
-    <nav class="navbar bg-white border-bottom navbar-light">
-      <router-link class="navbar-brand mr-auto" :to="{ name: 'home' }">
-        LaravelBnb
-      </router-link>
-      <button type="button" class="btn btn-secondary position-relative">
-        Shopping Cart
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    <nav class="navbar bg-dark border-bottom navbar-light">
+      <router-link :to="{ name: 'home' }" class="navbar-brand mr-auto text-white"> Bookings </router-link>
+      <router-link :to="{ name: 'shopping-cart' }">
+        <button class="btn btn-secondary position-relative" type="button">
+          Shopping Cart
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {{ countCartItems }}
         </span>
-      </button>
-      <!-- <router-link class="btn nav-button" :to="{ name: 'second' }">Second</router-link>-->
+        </button>
+      </router-link>
     </nav>
 
     <div class="container mt-4 mb-4 pr-4 pl-4">
