@@ -11,38 +11,22 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="from">From</label>
-        <input
-          id="from"
-          type="date"
-          name="from"
-          class="form-control form-control-sm"
-          v-model="from"
-          @keyup.enter="check"
-          :class="[{ 'is-invalid': getErrorsFor('from') }]"
-        />
+        <input id="from" v-model="from" :class="[{ 'is-invalid': getErrorsFor('from') }]"
+          class="form-control form-control-sm" name="from" type="date" @keyup.enter="check" />
         <invalid-feedback :errors="getErrorsFor('from')"></invalid-feedback>
       </div>
 
       <div class="form-group col-md-6">
         <label for="to">To</label>
-        <input
-          id="to"
-          type="date"
-          name="to"
-          class="form-control form-control-sm"
-          v-model="to"
-          @keyup.enter="check"
-          :class="[{ 'is-invalid': getErrorsFor('to') }]"
-        />
+        <input id="to" v-model="to" :class="[{ 'is-invalid': getErrorsFor('to') }]" class="form-control form-control-sm"
+          name="to" type="date" @keyup.enter="check" />
         <invalid-feedback :errors="getErrorsFor('to')"></invalid-feedback>
       </div>
 
-      <button
-        class="btn btn-outline-primary btn-block"
-        @click="check"
-        :disabled="loading"
-      >
-        <template v-if="loading"><i class="fas fa-spinner fa-pulse"></i>Checking...</template>
+      <button :disabled="loading" class="btn btn-outline-primary btn-block" @click="check">
+        <template v-if="loading">
+          <i class="fas fa-spinner fa-pulse"></i>Checking...
+        </template>
         <template v-else>Check!</template>
       </button>
     </div>
@@ -50,11 +34,11 @@
 </template>
 
 <script>
-import InvalidFeedback from "../shared/components/InvalidFeedback";
+import InvalidFeedback from "../shared/components/InvalidFeedback.vue";
 import validationErrors from "../shared/mixins/validationErrors";
 
 export default {
-  name: 'Availability',
+  name: "Availability",
 
   mixins: [validationErrors],
 
@@ -63,7 +47,7 @@ export default {
   },
 
   components: {
-    InvalidFeedback
+    InvalidFeedback,
   },
 
   data() {
@@ -80,9 +64,18 @@ export default {
       this.loading = true;
       this.errors = null;
 
-      this.$store.dispatch('setLastDateCheck', {
+      // if (!this.from) {
+      //   document.getElementById('from').focus();
+      //   return;
+      // }
+      // if (!this.to) {
+      //   document.getElementById('to').focus();
+      //   return;
+      // }
+
+      this.$store.dispatch("setLastDateCheck", {
         from: this.from,
-        to: this.to
+        to: this.to,
       });
 
       axios
@@ -101,7 +94,7 @@ export default {
         })
         .finally(() => {
           this.loading = false;
-          this.$emit('available', this.available);
+          this.$emit("available", this.available);
         });
     },
   },

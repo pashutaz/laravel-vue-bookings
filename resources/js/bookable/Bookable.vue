@@ -9,20 +9,17 @@
           <div class="card-body">
             <p class="card-text">{{ bookable.description }}</p>
           </div>
-          <img :src="`https://picsum.photos/seed/${ bookable.title }/700/300`" alt="image" class="w-100">
+          <img :src="`https://picsum.photos/seed/${bookable.title}/700/300`" alt="image" class="w-100" />
         </div>
         <div v-else>Loading...</div>
       </div>
-      <hr>
+      <hr />
       <review-list :bookable-id="String(this.$route.params.id)"></review-list>
     </div>
 
     <div class="col-md-4 pt-4">
-      <availability
-        :bookable-id="String(this.$route.params.id)"
-        class="mb-4"
-        @available="checkPrice($event)"
-      ></availability>
+      <availability :bookable-id="String(this.$route.params.id)" class="mb-4" @available="checkPrice($event)">
+      </availability>
 
       <transition name="slide-fade">
         <div v-if="price">
@@ -41,15 +38,15 @@
 </template>
 
 <script>
-import Availability from "./Availability";
-import ReviewList from "./ReviewList";
-import PriceBreakdown from "./PriceBreakdown";
+import Availability from "./Availability.vue";
+import ReviewList from "./ReviewList.vue";
+import PriceBreakdown from "./PriceBreakdown.vue";
 
 export default {
   components: {
     Availability,
     ReviewList,
-    PriceBreakdown
+    PriceBreakdown,
   },
 
   data() {
@@ -61,7 +58,7 @@ export default {
        * @property {number} total
        * @property {Object} breakdown
        */
-      price: null
+      price: null,
     };
   },
 
@@ -85,7 +82,9 @@ export default {
 
       try {
         this.price = (
-          await axios.get(`/api/bookables/price?price=${this.bookable.price}&from=${dates.from}&to=${dates.to}`)
+          await axios.get(
+            `/api/bookables/price?price=${this.bookable.price}&from=${dates.from}&to=${dates.to}`
+          )
         ).data.data;
       } catch (e) {
         this.price = null;
@@ -93,24 +92,24 @@ export default {
     },
 
     addItemToCart() {
-      this.$store.dispatch('addItemToCart', {
+      this.$store.dispatch("addItemToCart", {
         bookable: this.bookable,
         price: this.price,
-        dates: this.$store.state.lastDateCheck
-      })
+        dates: this.$store.state.lastDateCheck,
+      });
     },
 
     removeItemFromCart() {
-      this.$store.dispatch('removeItemFromCart', this.bookable.id)
-    }
+      this.$store.dispatch("removeItemFromCart", this.bookable.id);
+    },
   },
 
   computed: {
     cartHasThisBooking() {
-      return (this.bookable !== null)
+      return this.bookable !== null
         ? !!this.$store.getters.findCartItem(this.bookable.id)
         : false;
-    }
-  }
+    },
+  },
 };
 </script>

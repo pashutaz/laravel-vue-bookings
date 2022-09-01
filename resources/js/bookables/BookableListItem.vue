@@ -5,10 +5,10 @@
         <h5 class="card-title">{{ title }}</h5>
       </div>
     </router-link>
-    <img :src="`https://picsum.photos/seed/${ title }/300/200`" alt="">
+    <img :src="`https://picsum.photos/seed/${ title }/300/200`" alt="" loading="lazy">
     <div class="card-body">
       <p class="card-text">{{ description }}</p>
-      <p v-if="price">From ${{ price }}/d</p>
+      <p v-if="price">From ${{ price }} / day</p>
     </div>
   </div>
 </template>

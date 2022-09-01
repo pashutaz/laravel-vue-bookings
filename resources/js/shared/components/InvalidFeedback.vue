@@ -1,6 +1,6 @@
 <template>
   <div class="invalid-feedback">
-    <p v-for="error in errors">
+    <p v-for="error in errors" :key="error">
       {{ error }}
     </p>
   </div>
@@ -11,7 +11,7 @@ export default {
   name: "InvalidFeedback",
 
   props: {
-    errors: Array
+    errors: Array,
   },
-}
+};
 </script>

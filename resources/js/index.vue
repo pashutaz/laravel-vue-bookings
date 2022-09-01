@@ -1,13 +1,13 @@
 <template>
   <div>
     <nav class="navbar bg-dark border-bottom navbar-light">
-      <router-link :to="{ name: 'home' }" class="navbar-brand mr-auto text-white"> Bookings </router-link>
+      <router-link :to="{ name: 'home' }" class="navbar-brand mr-auto text-white"> Bookings</router-link>
       <router-link :to="{ name: 'shopping-cart' }">
         <button class="btn btn-secondary position-relative" type="button">
           Shopping Cart
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          {{ countCartItems }}
-        </span>
+            {{ countCartItems }}
+          </span>
         </button>
       </router-link>
     </nav>
