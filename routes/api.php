@@ -26,15 +26,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('bookables', [BookableController::class, 'index']);
-// Route::get('bookables/{id}', [BookableController::class, 'show']);
-Route::get('bookables/price', BookablePriceController::class);
+Route::group(['prefix' => 'bookables'], function () {
+    // Route::get('bookables', [BookableController::class, 'index']);
+    // Route::get('bookables/{id}', [BookableController::class, 'show']);
+    Route::get('/price', BookablePriceController::class);
+    Route::get('/{bookable}/availability', BookableAvailabilityController::class)->name('bookables.availability.show');
+    Route::get('/{bookable}/reviews', BookableReviewController::class)->name('bookables.reviews.index');
+});
 Route::apiResource('bookables', BookableController::class)->only(['index', 'show']);
-Route::get('bookables/{bookable}/availability', BookableAvailabilityController::class)
-    ->name('bookables.availability.show');
-Route::get('bookables/{bookable}/reviews', BookableReviewController::class)
-    ->name('bookables.reviews.index');
 
 Route::resource('reviews', ReviewController::class)->only(['show', 'store']);
-Route::get('booking-by-review/{id}', BookingByReviewController::class)
-    ->name('booking.by-review.show');
+Route::get('booking-by-review/{id}', BookingByReviewController::class)->name('booking.by-review.show');
