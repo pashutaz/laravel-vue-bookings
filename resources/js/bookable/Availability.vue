@@ -79,9 +79,7 @@ export default {
       });
 
       axios
-        .get(
-          `/api/bookables/${this.bookableId}/availability?from=${this.from}&to=${this.to}`
-        )
+        .get(`/api/bookables/${this.bookableId}/availability?from=${this.from}&to=${this.to}`)
         .then((response) => {
           console.log(response);
           this.status = response.status;
