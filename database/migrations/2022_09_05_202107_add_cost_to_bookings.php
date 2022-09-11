@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookablesTable extends Migration
+class AddCostToBookings extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateBookablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookables', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('title');
-            $table->text('description');
+        Schema::table('bookings', function (Blueprint $table) {
+            $table->float('cost')->default(0.00);
         });
     }
 
@@ -28,6 +25,8 @@ class CreateBookablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookables');
+        Schema::table('bookings', function (Blueprint $table) {
+            $table->dropColumn('cost');
+        });
     }
 }

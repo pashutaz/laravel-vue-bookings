@@ -6,6 +6,10 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * @property \Carbon\Carbon $from
+ * @property \Carbon\Carbon $to
+ */
 class Booking extends Model
 {
     use HasFactory;
