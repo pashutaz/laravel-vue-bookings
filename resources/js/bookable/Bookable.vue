@@ -82,7 +82,7 @@ export default {
       try {
         this.price = (
           await axios.get(
-            `/api/bookables/price?price=${this.bookable.price}&from=${dates.from}&to=${dates.to}`
+            `/api/bookables/${this.$route.params.id}/price?from=${dates.from}&to=${dates.to}`
           )
         ).data.data;
       } catch (e) {
