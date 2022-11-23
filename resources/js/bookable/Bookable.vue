@@ -9,7 +9,7 @@
           <div class="card-body">
             <p class="card-text">{{ bookable.description }}</p>
           </div>
-          <img :src="`https://via.placeholder.com/700x300`" alt="image" class="w-100" />
+          <img :src="`https://picsum.photos/seed/${bookable.title}/700/300`" alt="" class="w-100" />
         </div>
         <div v-else>Loading...</div>
       </div>
