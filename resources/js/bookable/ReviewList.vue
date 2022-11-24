@@ -16,10 +16,7 @@
                 <div class="row pt-3">
                     <div class="col-md-6 font-italic">Pashutaz</div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <star-rating
-                            class="fa-lg"
-                            :value="parseFloat(review.rating)"
-                        ></star-rating>
+                        <star-rating class="fa-lg" :value="parseFloat(review.rating)" />
                     </div>
                 </div>
 

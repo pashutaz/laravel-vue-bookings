@@ -12,16 +12,16 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="user-email">Email</label>
-            <input id="user-email" class="form-control" name="email" placeholder="johndoe90@gmail.com" type="email">
+            <input id="user-email" class="form-control" name="email" type="email" placeholder="johndoe90@gmail.com" required>
           </div>
           <div class="form-group col-md-6">
             <label for="user-name">Name</label>
-            <input id="user-name" class="form-control" name="name" placeholder="John Doe" type="text">
+            <input id="user-name" class="form-control" name="name" type="text" placeholder="John Doe" required>
           </div>
         </div>
         <div class="form-group">
           <label for="user-address">Address</label>
-          <input id="user-address" class="form-control" name="main-address" placeholder="1234 Main St" type="text">
+          <input id="user-address" class="form-control" name="main-address" type="text" placeholder="1234 Main St">
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -37,14 +37,14 @@
             <input id="user-zip" class="form-control" name="zip" type="text">
           </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <div class="form-check">
             <input id="gridCheck" class="form-check-input" type="checkbox">
             <label class="form-check-label" for="gridCheck">
               Check me out
             </label>
           </div>
-        </div>
+        </div> -->
         <hr />
         <button class="btn btn-outline-success btn-lg btn-block" type="submit">Reserve</button>
       </form>

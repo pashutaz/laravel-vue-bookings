@@ -24,13 +24,8 @@
         <template v-else>
           Review page
           <div class="form-group">
-            <label class="text-muted">
-              Select the star rating
-            </label>
-            <star-rating
-              v-model="review.rating"
-              class="fa-3x"
-            ></star-rating>
+            <label class="text-muted">Select the star rating</label>
+            <star-rating v-model="review.rating" class="fa-3x" />
           </div>
           <div class="form-group">
             <label class="text-muted" for="content">
@@ -45,7 +40,7 @@
               rows="10"
               :class="{'is-invalid': getErrorsFor('content')}"
             ></textarea>
-            <invalid-feedback :errors="getErrorsFor('content')"></invalid-feedback>
+            <invalid-feedback :errors="getErrorsFor('content')" />
           </div>
 
           <button :disabled="sending" class="btn btn-lg btn-primary btn-block" @click.prevent="submit">

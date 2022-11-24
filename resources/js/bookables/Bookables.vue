@@ -7,7 +7,7 @@
         :key="bookable.id"
         v-bind="bookable"
         class="col-md-4 mb-3 p-0"
-      ></bookable-list-item>
+      />
     </div>
   </div>
 </template>
