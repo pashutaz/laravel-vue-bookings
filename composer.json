@@ -1,14 +1,14 @@
 {
-    "name": "laravel/laravel",
+    "name": "pashutaz/bookings",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Local booking app built with laravel-vue",
     "keywords": [
-        "framework",
-        "laravel"
+        "laravel",
+        "vue"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -58,6 +58,7 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "test": "vendor/bin/phpunit"
     }
 }
