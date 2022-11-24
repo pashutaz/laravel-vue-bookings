@@ -3,13 +3,9 @@ require('./bootstrap');
 import VueRouter from 'vue-router';
 import router from './routes';
 import Vuex from 'vuex';
-import Index from './index';
-
-import moment from 'moment';
-import StarRating from './shared/components/StarRating.vue';
-import FatalError from "./shared/components/FatalError";
-import SuccessResponse from "./shared/components/SuccessResponse";
 import Store from "./shared/store";
+import moment from 'moment';
+import Index from './index.vue';
 
 window.Vue = require('vue');
 
@@ -20,24 +16,17 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+const files = require.context('./', true, /\.vue$/i)
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-// Vue.component(
-//     'example-component',
-//     require('./components/ExampleComponent.vue').default
-// );
-
+// Vue.component("star-rating", require('./shared/components/StarRating.vue').default);
+// Vue.component("fatal-error", require('./shared/components/FatalError.vue').default);
+// Vue.component("success-response", require('./shared/components/SuccessResponse.vue').default);
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
 Vue.filter("fromNow", value => moment(value).fromNow());
-
-Vue.component("star-rating", StarRating);
-Vue.component("fatal-error", FatalError);
-Vue.component("success-response", SuccessResponse);
 
 const store = new Vuex.Store(Store);
 
