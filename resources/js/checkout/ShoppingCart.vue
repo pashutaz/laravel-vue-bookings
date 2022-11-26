@@ -8,7 +8,7 @@
     </div>
 
     <div class="col-md-8">
-      <form>
+      <form v-if="cartCount">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="user-email">Email</label>
@@ -48,15 +48,19 @@
         <hr />
         <button class="btn btn-outline-success btn-lg btn-block" type="submit">Reserve</button>
       </form>
+
+      <div class="jumbotron text-center" v-else>
+        <h1>Try adding something to your cart</h1>
+      </div>
     </div>
 
     <div class="col-md-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Your cart</span>
-        <span class="badge badge-secondary badge-pill">{{ cartCount }}</span>
+        <span class="badge badge-secondary badge-pill">{{ cartCount || 'empty' }}</span>
       </h4>
       <div class="card">
-        <div class="card-body">
+        <div class="card-body" v-if="cartCount">
           <transition-group name="fade">
             <div v-for="{ bookable, price, dates } in cartItems" :key="bookable.id" class="pb-2">
               <div class="d-flex justify-content-between">
