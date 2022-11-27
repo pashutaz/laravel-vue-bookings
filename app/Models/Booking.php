@@ -14,7 +14,7 @@ class Booking extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['from', 'to'];
+    protected $fillable = ['from', 'to', 'bookable_id', 'cost'];
     protected $visible = ['id', 'from', 'to', 'bookable'];
 
     public function bookable()
