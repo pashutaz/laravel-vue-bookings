@@ -52,7 +52,6 @@
   </div>
 </template>
 
-
 <script>
 import InvalidFeedback from "../shared/components/InvalidFeedback";
 import validationErrors from "../shared/mixins/validationErrors";

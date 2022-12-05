@@ -11,21 +11,31 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="from">From</label>
-        <input id="from" v-model="from" :class="[{ 'is-invalid': getErrorsFor('from') }]"
-          class="form-control form-control-sm" name="from" type="date" @keyup.enter="check" />
-        <invalid-feedback :errors="getErrorsFor('from')"></invalid-feedback>
+        <input id="from"
+               v-model="from"
+               :class="[{ 'is-invalid': getErrorsFor('from') }]"
+               class="form-control form-control-sm"
+               name="from"
+               type="date"
+               @keyup.enter="check" />
+        <invalid-feedback :errors="getErrorsFor('from')" />
       </div>
 
       <div class="form-group col-md-6">
         <label for="to">To</label>
-        <input id="to" v-model="to" :class="[{ 'is-invalid': getErrorsFor('to') }]" class="form-control form-control-sm"
-          name="to" type="date" @keyup.enter="check" />
-        <invalid-feedback :errors="getErrorsFor('to')"></invalid-feedback>
+        <input id="to"
+               v-model="to"
+               :class="[{ 'is-invalid': getErrorsFor('to') }]"
+               class="form-control form-control-sm"
+               name="to"
+               type="date"
+               @keyup.enter="check" />
+        <invalid-feedback :errors="getErrorsFor('to')" />
       </div>
 
       <button :disabled="loading" class="btn btn-outline-primary btn-block" @click="check">
         <template v-if="loading">
-          <i class="fas fa-spinner fa-pulse"></i>Checking...
+          <i class="fas fa-spinner fa-pulse" />Checking...
         </template>
         <template v-else>Check!</template>
       </button>
@@ -78,8 +88,7 @@ export default {
         to: this.to,
       });
 
-      axios
-        .get(`/api/bookables/${this.bookableId}/availability?from=${this.from}&to=${this.to}`)
+      axios.get(`/api/bookables/${this.bookableId}/availability?from=${this.from}&to=${this.to}`)
         .then((response) => {
           console.log(response);
           this.status = response.status;

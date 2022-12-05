@@ -61,10 +61,8 @@
 
         <div class="form-group">
           <div class="form-check">
-            <input id="remember" class="form-check-input" type="checkbox" :checked="isRemember">
-            <label class="form-check-label" for="remember">
-              Remember me
-            </label>
+            <input id="remember" class="form-check-input" type="checkbox" :checked="isRemember" />
+            <label class="form-check-label" for="remember">Remember me</label>
           </div>
         </div>
 
@@ -109,7 +107,7 @@
                   class="btn btn-sm btn-outline-danger"
                   @click="removeItemFromCart(bookable.id)"
                 >
-                  <i class="fas fa-trash-alt"></i>
+                  <i class="fas fa-trash-alt" />
                 </button>
               </div>
             </div>
@@ -119,9 +117,7 @@
         <div class="card-footer">
           <h4>
             Total:
-            <span class="badge badge-success float-right"
-              >${{ cartTotal }}</span
-            >
+            <span class="badge badge-success float-right">${{ cartTotal }}</span>
           </h4>
         </div>
       </div>
