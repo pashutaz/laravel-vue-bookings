@@ -1,6 +1,17 @@
+import {ADD_TO_CART, REMOTE_FROM_CART, SET_CART} from "../mutation-types";
+
+/**
+ * @typedef {object} CartItem
+ * @property {object} bookable
+ * @property {String} bookable.id
+ * @property {object} price
+ * @property {number} price.total
+ */
+
 export default {
     state: {
         cart: {
+            /** @type {CartItem[]} */
             items: []
         }
     },
@@ -10,7 +21,7 @@ export default {
          * @param state
          * @param payload
          */
-        setCart(state, payload) {
+        [SET_CART](state, payload) {
             state.cart = payload;
         },
 
@@ -19,7 +30,7 @@ export default {
          * @param state
          * @param payload
          */
-        addItemToCart(state, payload) {
+        [ADD_TO_CART](state, payload) {
             state.cart.items.push(payload);
         },
 
@@ -28,7 +39,7 @@ export default {
          * @param state
          * @param payload
          */
-        removeItemFromCart(state, payload) {
+        [REMOTE_FROM_CART](state, payload) {
             state.cart.items = state.cart.items.filter(item => item.bookable.id !== payload);
         },
     },
@@ -42,34 +53,43 @@ export default {
         /**
          * Persists cart state into a localStorage
          *
-         * @param context
+         * @param {Store} context
          * @param payload
          */
-        async setCart({commit}, payload) {
-            commit('setCart', payload);
+        async 'setCart'({commit}, payload) {
+            commit(SET_CART, payload);
             localStorage.setItem('shoppingCart', JSON.stringify(payload));
         },
 
         /**
-         * Commits mutation and then dispatches an action
+         * Changes cart state and persists it
          *
-         * @param context
+         * @param {Store} context
          * @param payload
          */
-        async addItemToCart({commit, dispatch, state}, payload) {
-            commit('addItemToCart', payload);
-            dispatch('setCart', state.cart);
+        async 'addItemToCart'({commit, dispatch, state}, payload) {
+            commit(ADD_TO_CART, payload);
+            await dispatch('setCart', state.cart);
         },
 
         /**
-         * Changes cart state and persist it
+         * Changes cart state and persists it
          *
-         * @param context
+         * @param {Store} context
          * @param payload
          */
-        async removeItemFromCart({commit, dispatch, state}, payload) {
-            commit('removeItemFromCart', payload);
-            dispatch('setCart', state.cart);
+        async 'removeItemFromCart'({commit, dispatch, state}, payload) {
+            commit(REMOTE_FROM_CART, payload);
+            await dispatch('setCart', state.cart);
+        },
+
+        /**
+         * Persists empty cart state
+         *
+         * @param {Store} context
+         */
+        async 'emptyCart'({dispatch}) {
+            await dispatch('setCart', []);
         }
     }
 }
