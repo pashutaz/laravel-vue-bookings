@@ -17,6 +17,7 @@
                class="form-control form-control-sm"
                name="from"
                type="date"
+               @change="onDateChange"
                @keyup.enter="check" />
         <invalid-feedback :errors="getErrorsFor('from')" />
       </div>
@@ -29,6 +30,7 @@
                class="form-control form-control-sm"
                name="to"
                type="date"
+               @change="onDateChange"
                @keyup.enter="check" />
         <invalid-feedback :errors="getErrorsFor('to')" />
       </div>
@@ -65,11 +67,20 @@ export default {
       from: this.$store.state.lastDateCheck.from,
       to: this.$store.state.lastDateCheck.to,
       loading: false,
-      status: null,
     };
   },
 
   methods: {
+    onDateChange(e) {
+      if (this.from > this.to) {
+        if (e.target.id === 'from') {
+          this.to = this.from
+        } else {
+          this.from = this.to
+        }
+      }
+    },
+
     check() {
       this.loading = true;
       this.errors = null;
