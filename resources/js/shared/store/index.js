@@ -1,7 +1,13 @@
+import Vue from "vue";
+import Vuex from "vuex";
+
+// modules
 import cart from "./modules/cart";
 import {SET_CART, SET_LAST_DATE_CHECK} from "./mutation-types";
 
-export default {
+Vue.use(Vuex);
+
+export default new Vuex.Store({
     modules: { cart },
     state: {
         lastDateCheck: {
@@ -28,7 +34,7 @@ export default {
          * @param {Store} context
          * @param payload
          */
-        async 'setLastDateCheck'({commit}, payload) {
+        async setLastDateCheck({commit}, payload) {
             commit(SET_LAST_DATE_CHECK, payload);
             localStorage.setItem('lastDateCheck', JSON.stringify(payload));
         },
@@ -38,7 +44,7 @@ export default {
          *
          * @param {Store} context
          */
-        async 'loadStateFromStorage'({commit}) {
+        async loadStateFromStorage({commit}) {
             const lastDateCheck = localStorage.getItem('lastDateCheck');
             if (lastDateCheck) {
                 commit(SET_LAST_DATE_CHECK, JSON.parse(lastDateCheck));
@@ -50,4 +56,4 @@ export default {
             }
         }
     }
-}
+});

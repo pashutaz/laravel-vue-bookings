@@ -56,7 +56,7 @@ export default {
          * @param {Store} context
          * @param payload
          */
-        async 'setCart'({commit}, payload) {
+        async setCart({commit}, payload) {
             commit(SET_CART, payload);
             localStorage.setItem('shoppingCart', JSON.stringify(payload));
         },
@@ -67,7 +67,7 @@ export default {
          * @param {Store} context
          * @param payload
          */
-        async 'addItemToCart'({commit, dispatch, state}, payload) {
+        async addItemToCart({commit, dispatch, state}, payload) {
             commit(ADD_TO_CART, payload);
             await dispatch('setCart', state.cart);
         },
@@ -78,7 +78,7 @@ export default {
          * @param {Store} context
          * @param payload
          */
-        async 'removeItemFromCart'({commit, dispatch, state}, payload) {
+        async removeItemFromCart({commit, dispatch, state}, payload) {
             commit(REMOTE_FROM_CART, payload);
             await dispatch('setCart', state.cart);
         },
@@ -88,7 +88,7 @@ export default {
          *
          * @param {Store} context
          */
-        async 'emptyCart'({dispatch}) {
+        async emptyCart({dispatch}) {
             await dispatch('setCart', []);
         }
     }

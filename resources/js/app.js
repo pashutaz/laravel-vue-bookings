@@ -3,8 +3,7 @@ require('./bootstrap');
 import Vue from "vue";
 import VueRouter from 'vue-router';
 import router from './routes';
-import Vuex from 'vuex';
-import Store from "./shared/store";
+import store from "./shared/store";
 import moment from 'moment';
 import Index from './index.vue';
 
@@ -25,19 +24,14 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 // Vue.component("success-response", require('./shared/components/SuccessResponse.vue').default);
 
 Vue.use(VueRouter);
-Vue.use(Vuex);
-
 Vue.filter("fromNow", value => moment(value).fromNow());
-
-const store = new Vuex.Store(Store);
 
 const app = new Vue({
     el: '#app',
     router,
     store,
-    components: {
-        "index": Index
-    },
+    components: {Index},
+
     beforeCreate() {
         this.$store.dispatch('loadStateFromStorage');
     }
