@@ -19,8 +19,8 @@ class CheckoutController extends Controller
         $userData = $request->validate([
             'email'   => 'required|email',
             'name'    => 'required|string',
-            'phone'   => 'required|min:5',
-            'county'  => 'min:2',
+            'phone'   => 'required|numeric|min:5|max:11',
+            'country'  => 'min:2',
         ]);
         $bookingsData = $request->validate([
             'bookings'               => 'required|array|min:1',
@@ -44,6 +44,8 @@ class CheckoutController extends Controller
                     'cost'        => $totalCost
                 ]);
             }
+
+            throw new \Exception('Not available');
         });
 
         return response($bookings);
