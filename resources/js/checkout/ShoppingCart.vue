@@ -184,6 +184,8 @@ export default {
       } catch (e) {
         this.errors = e.response && e.response.data.errors;
         this.status = e.response.status;
+
+        this.$toast(e.response.data.message);
       } finally {
         this.loading = false;
       }
