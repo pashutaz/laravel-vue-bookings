@@ -142,7 +142,9 @@ import InvalidFeedback from "../shared/components/InvalidFeedback";
 
 export default {
   name: "ShoppingCart",
+
   mixins: [validationErrors],
+
   components: {InvalidFeedback},
 
   data() {
@@ -168,7 +170,7 @@ export default {
 
     async submit() {
       this.loading = true;
-      this.errors = [];
+      this.errors = null;
 
       try {
         await axios.post("/api/checkout", {
