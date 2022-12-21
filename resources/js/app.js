@@ -5,7 +5,9 @@ import VueRouter from 'vue-router';
 import router from './routes';
 import store from "./shared/store";
 import moment from 'moment';
+import Toast, {POSITION} from "vue-toastification";
 import Index from './index.vue';
+import "vue-toastification/dist/index.css";
 
 window.Vue = require('vue');
 
@@ -24,6 +26,11 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 // Vue.component("success-response", require('./shared/components/SuccessResponse.vue').default);
 
 Vue.use(VueRouter);
+Vue.use(Toast, {
+    position: POSITION.BOTTOM_RIGHT,
+    showCloseButtonOnHover: true,
+    maxToasts: 5,
+});
 Vue.filter("fromNow", value => moment(value).fromNow());
 
 const app = new Vue({

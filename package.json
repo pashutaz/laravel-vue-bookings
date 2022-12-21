@@ -28,6 +28,7 @@
         "@fortawesome/fontawesome-free": "^5.15.3",
         "moment": "^2.29.1",
         "vue-router": "^3.4.9",
+        "vue-toastification": "*",
         "vuex": "^3.6.2"
     }
 }
