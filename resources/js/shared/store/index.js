@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import {isLoggedIn} from "../auth";
+import {isLoggedIn, logOut} from "../auth";
 
 // modules
 import cart from "./modules/cart";
@@ -50,6 +50,12 @@ export default new Vuex.Store({
             localStorage.setItem('lastDateCheck', JSON.stringify(payload));
         },
 
+        async logOut({commit}) {
+            commit(SET_USER, {});
+            commit(SET_LOGGED_IN, false);
+            logOut();
+        },
+
         /**
          * Init state loading from local storage
          *
@@ -74,7 +80,7 @@ export default new Vuex.Store({
                     commit(SET_USER, user);
                     commit(SET_LOGGED_IN, true);
                 } catch (e) {
-                    dispatch('logout');
+                    dispatch('logOut');
                 }
             }
         }
