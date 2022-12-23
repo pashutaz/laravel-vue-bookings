@@ -6,6 +6,11 @@ import ShoppingCart from "./checkout/ShoppingCart";
 
 const routes = [
     {
+        path: "/auth/login",
+        component: require('./auth/Login').default,
+        name: "login"
+    },
+    {
         path: "/",
         component: Bookables,
         name: "home"
