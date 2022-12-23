@@ -1,24 +1,35 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import {isLoggedIn} from "../auth";
 
 // modules
 import cart from "./modules/cart";
-import {SET_CART, SET_LAST_DATE_CHECK} from "./mutation-types";
+import {SET_CART, SET_LAST_DATE_CHECK, SET_LOGGED_IN, SET_USER} from "./mutation-types";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    modules: { cart },
+    modules: {cart},
     state: {
         lastDateCheck: {
             from: null,
             to: null
-        }
+        },
+        isLoggedIn: false,
+        user: {}
     },
     /** @type {import('vuex').MutationTree} */
     mutations: {
         [SET_LAST_DATE_CHECK](state, payload) {
             state.lastDateCheck = payload;
+        },
+
+        [SET_USER](state, payload) {
+            state.user = payload;
+        },
+
+        [SET_LOGGED_IN](state, payload) {
+            state.isLoggedIn = payload;
         }
     },
     /** @type {import('vuex').GetterTree} */
@@ -53,6 +64,18 @@ export default new Vuex.Store({
             const cart = localStorage.getItem('shoppingCart');
             if (cart) {
                 commit(SET_CART, JSON.parse(cart));
+            }
+        },
+
+        async loadUser({commit, dispatch}) {
+            if (isLoggedIn()) {
+                try {
+                    const user = (await axios.get('/user')).data;
+                    commit(SET_USER, user);
+                    commit(SET_LOGGED_IN, true);
+                } catch (e) {
+                    dispatch('logout');
+                }
             }
         }
     }
