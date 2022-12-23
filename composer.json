@@ -61,6 +61,7 @@
             "@php artisan key:generate --ansi"
         ],
         "test": "vendor/bin/phpunit",
+        "routes": "php artisan route:list --compact",
         "api-routes": "php artisan route:list --compact --path=api"
     }
 }

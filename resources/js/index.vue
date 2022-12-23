@@ -11,13 +11,13 @@
         </button>
       </router-link>
 
-      <div v-if="!isLoggedIn">
+      <div v-if="!this.isUserLoggedIn">
         <router-link :to="{ name: 'login' }">
           <button class="btn btn-sm btn-outline-info" type="button">Log in</button>
         </router-link>
-        <router-link :to="{ name: 'register' }">
-          <button class="btn btn-sm btn-outline-info" type="button">Sign up</button>
-        </router-link>
+<!--        <router-link :to="{ name: 'register' }">-->
+<!--          <button class="btn btn-sm btn-outline-info" type="button">Sign up</button>-->
+<!--        </router-link>-->
       </div>
 
       <button v-else class="btn btn-sm btn-outline-info" type="button" @click="logout">Logout</button>
@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
   computed: {
-    ...mapState(['isLoggedIn']),
+    ...mapGetters(['isUserLoggedIn']),
 
     countCartItems: function () {
       return this.$store.getters.cartCount;
@@ -43,8 +43,11 @@ export default {
 
   methods: {
     async logout() {
-      await axios.post('/logout');
-      this.$store.dispatch('logOut');
+      if (confirm('Want to logout?')) {
+        await axios.post('/logout');
+        await this.$store.dispatch('logOut');
+        await this.$router.push({name: 'home'});
+      }
     }
   }
 }
