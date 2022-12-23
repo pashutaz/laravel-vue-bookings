@@ -3,17 +3,32 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Log in</div>
+          <div class="card-header">Register</div>
 
           <div class="card-body">
             <form @submit.prevent="submit">
+              <div class="row mb-3">
+                <label class="col-md-4 col-form-label text-md-end" for="name">Your name</label>
+                <div class="col-md-6">
+                  <input id="name"
+                         v-model="user.name"
+                         autocomplete="name"
+                         autofocus
+                         class="form-control"
+                         :class="[{ 'is-invalid': getErrorsFor('name') }]"
+                         name="name"
+                         placeholder="John Doe"
+                  >
+                  <invalid-feedback :errors="getErrorsFor('name')"/>
+                </div>
+              </div>
+
               <div class="row mb-3">
                 <label class="col-md-4 col-form-label text-md-end" for="email">Email Address</label>
                 <div class="col-md-6">
                   <input id="email"
                          v-model="user.email"
                          autocomplete="email"
-                         autofocus
                          class="form-control"
                          :class="[{ 'is-invalid': getErrorsFor('email') }]"
                          name="email"
@@ -30,7 +45,6 @@
                 <div class="col-md-6">
                   <input id="password"
                          v-model="user.password"
-                         autocomplete="current-password"
                          class="form-control"
                          :class="[{ 'is-invalid': getErrorsFor('password') }]"
                          name="password"
@@ -42,17 +56,21 @@
               </div>
 
               <div class="row mb-3">
-                <div class="col-md-6 offset-md-4">
-                  <div class="form-check">
-                    <input id="remember" v-model="remember" class="form-check-input" name="remember" type="checkbox">
-                    <label class="form-check-label" for="remember">Remember Me</label>
-                  </div>
+                <label class="col-md-4 col-form-label text-md-end" for="password_confirmation">Confirm Password</label>
+                <div class="col-md-6">
+                  <input id="password_confirmation"
+                         v-model="user.password_confirmation"
+                         class="form-control"
+                         name="password_confirmation"
+                         required
+                         type="password"
+                  >
                 </div>
               </div>
 
               <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
-                  <button class="btn btn-primary btn-lg float-right" type="submit">Login</button>
+                  <button class="btn btn-primary btn-lg float-right" type="submit">Register</button>
                 </div>
               </div>
             </form>
@@ -60,8 +78,7 @@
             <hr/>
 
             <div>
-              <router-link :to="{name: 'register'}">Sign up</router-link>
-              <router-link :to="{name: 'home'}" class="float-right">Forgot password?</router-link>
+              <router-link :to="{name: 'login'}">Already have an account?</router-link>
             </div>
           </div>
         </div>
@@ -76,7 +93,7 @@ import InvalidFeedback from "../shared/components/InvalidFeedback";
 import {logIn} from "../shared/auth";
 
 export default {
-  name: "Login",
+  name: "Register",
 
   mixins: [validationErrors],
 
@@ -87,11 +104,11 @@ export default {
   data() {
     return {
       loading: false,
-      remember: false,
 
       user: {
         email: null,
         password: null,
+        password_confirmation: null
       }
     }
   },
@@ -102,13 +119,13 @@ export default {
 
       try {
         await axios.get('sanctum/csrf-cookie');
-        await axios.post('/login', this.user);
+        await axios.post('/register', this.user);
 
         logIn();
         await this.$store.dispatch('loadUser');
         await this.$router.push({name: 'home'});
       } catch (e) {
-        this.errors = e.response && e.response.data.errors;
+        this.errors = e.response && e.response.data.errors
         this.status = e.response.status;
       } finally {
         this.loading = false;
