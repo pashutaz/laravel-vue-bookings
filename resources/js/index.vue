@@ -2,25 +2,26 @@
   <div>
     <nav class="navbar bg-dark border-bottom navbar-light">
       <router-link :to="{ name: 'home' }" class="navbar-brand mr-auto text-white">Bookings</router-link>
-      <router-link :to="{ name: 'shopping-cart' }" class="mr-2">
-        <button class="btn btn-secondary position-relative" type="button">
-          Shopping Cart
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            {{ countCartItems }}
-          </span>
+
+      <div class="nav-item dropdown">
+        <button aria-expanded="false" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">
+          Profile
         </button>
-      </router-link>
-
-      <div v-if="!this.isUserLoggedIn">
-        <router-link :to="{ name: 'login' }">
-          <button class="btn btn-sm btn-outline-info" type="button">Log in</button>
-        </router-link>
-<!--        <router-link :to="{ name: 'register' }">-->
-<!--          <button class="btn btn-sm btn-outline-info" type="button">Sign up</button>-->
-<!--        </router-link>-->
+        <div class="dropdown-menu dropdown-menu-right">
+          <router-link :to="{ name: 'shopping-cart' }" class="dropdown-item">
+            Shopping Cart
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
+              {{ countCartItems }}
+            </span>
+          </router-link>
+          <div class="dropdown-divider"></div>
+          <div v-if="!this.isUserLoggedIn">
+            <router-link :to="{ name: 'login' }" class="dropdown-item">Log in</router-link>
+            <router-link :to="{ name: 'register' }" class="dropdown-item">Sign up</router-link>
+          </div>
+          <a v-else class="dropdown-item" @click="logout">Logout</a>
+        </div>
       </div>
-
-      <button v-else class="btn btn-sm btn-outline-info" type="button" @click="logout">Logout</button>
     </nav>
 
     <div class="container mt-4 mb-4 pr-4 pl-4">
