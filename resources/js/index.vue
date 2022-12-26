@@ -5,7 +5,8 @@
 
       <div class="nav-item dropdown">
         <button aria-expanded="false" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">
-          Profile
+          <i class="fas fa-bars" />
+          <i class="fas fa-user-circle" />
         </button>
         <div class="dropdown-menu dropdown-menu-right">
           <router-link :to="{ name: 'shopping-cart' }" class="dropdown-item">
